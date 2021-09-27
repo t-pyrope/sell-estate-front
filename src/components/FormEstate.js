@@ -55,14 +55,16 @@ const FormEstate = (props) => {
             {
                 estateInfo.region ?
                     <form onSubmit={(e) => onSubmit(e)}>
-                        <FormControl component="fieldset">
+                        <FormControl component="fieldset" style={{ marginBottom: "1rem"}}>
                             <FormLabel component="legend">Vyberte okres</FormLabel>
                             <Grid container columns={{ xs: 3 }}>
                                 {estateInfo.region.districts.map(district =>
                                     <Grid item key={district}>
                                         <FormControlLabel
                                             value={district}
-                                            control={<Radio />}
+                                            control={<Radio 
+                                                checked={district === estateInfo.district}
+                                            />}
                                             label={district}
                                             name="district"
                                             onChange={onChange}
@@ -71,14 +73,16 @@ const FormEstate = (props) => {
                                 )}
                             </Grid>
                         </FormControl>
-                        <FormControl component="fieldset">
+                        <FormControl component="fieldset" style={{ marginBottom: "1rem"}}>
                             <FormLabel component="legend">Vyberte typ nemovitosti</FormLabel>
                             <Grid container columns={{ xs: 3 }}>
                                 {estateTypes.map(t =>
                                     <Grid item key={t}>
                                         <FormControlLabel
                                             value={t}
-                                            control={<Radio />}
+                                            control={<Radio
+                                                checked={t === estateInfo.estateType}
+                                            />}
                                             label={t}
                                             name="estateType"
                                             onChange={onChange}
