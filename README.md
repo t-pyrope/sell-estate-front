@@ -4,8 +4,6 @@ This is a front for Sell Estate App. [Backend is here](https://github.com/t-pyro
 
 Check how it looks like here: [Sell Estate App](https://sell-estate-ezpbb.mongodbstitch.com/)
 
-Data are stored in MongoDB
-
 ## How to use the app with backend repository
 1. Download this repository
 ```
