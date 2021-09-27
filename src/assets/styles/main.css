@@ -92,3 +92,18 @@ h1, p {
     85% {opacity: 1}
     100% { opacity: 0; }
 }
+
+@media(max-width: 732px) {
+    body {
+        margin: 1rem;
+        width: calc(100vw - 2rem);
+    }
+
+    .MuiOutlinedInput-root.MuiInputBase-root {
+        width: 100%;
+    }
+
+    .MuiStepper-root {
+        margin: 0;
+    }
+}
