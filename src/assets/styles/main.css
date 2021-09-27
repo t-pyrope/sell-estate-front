@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+    width: 100%;
+    max-width: 700px;
+    margin: 2rem auto;
+    color: rgb(31, 31, 31);
+    background-color: rgb(240, 240, 240);
+}
+
+.MuiPaper-root {
+    padding: 2rem 1.5rem;
+}
+
+.MuiStepper-root {
+    margin: 0 1rem;
+    flex-grow: 1;
+}
+
+.MuiFormControl-root.css-1nrlq1o-MuiFormControl-root {
+    margin-bottom: 1rem;
+}
+
+.MuiPaper-root.MuiAlert-root {
+    position: absolute;
+    top: 4rem;
+    left: 30%;
+    right: 30%;
+    z-index: 2;
+
+}
+
+.MuiOutlinedInput-root.MuiInputBase-root {
+    width: 50%;
+}
+
+.MuiFormControl-root {
+    display: block !important;
+}
+
+h1, p {
+    margin-bottom: 0.7rem;
+}
+
+.flex-row {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.fade-out {
+    animation-name: fadeOut;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@-moz-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@-o-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
