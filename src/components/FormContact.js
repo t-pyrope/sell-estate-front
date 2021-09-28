@@ -36,7 +36,6 @@ const FormContact = (props) => {
     const validateError = (inputName, value) => {
         if (inputName === "phone") {
             let regPhone = /([+]?\d{1,3}[. \s]?)?(\d{9}?)/;
-            console.log(regPhone.test(value))
             return !regPhone.test(value)
         }
         if (inputName === "email") {
@@ -53,16 +52,15 @@ const FormContact = (props) => {
 
         EstatesDataService
             .createEstate({
-                fullName, phone, email,
-                estateType, region: region.title, district})
-            .then(res => {
+                fullName, phone, email, estateType,
+                region: region.title, district
+            }).then(res => {
                 setAlert({text: "Údaje byly úspěšně odeslány, brzy Vás budeme kontaktovat", color: "success"});
                 setContacts({ ...contacts, fullName: "", email: "", phone: "" });
                 setEstateInfo({ ...estateInfo, region: null, district: null, estateType: null })
                 setActiveStep(0);
 
-            })
-            .catch(err => {
+            }).catch(err => {
                 console.error(err)
                 setAlert({text: "Něco je špatně, zkuste prosím znovu", color: "error"})
             })
