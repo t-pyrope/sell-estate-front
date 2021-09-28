@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-    Stepper, Step, StepLabel, Button
+    Stepper, Step, StepLabel, IconButton,
 } from '@mui/material';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const HorizontalStepper = ({ steps, activeStep, setActiveStep, finishedFirst }) => {
     const onClick = () => {
@@ -10,25 +12,29 @@ const HorizontalStepper = ({ steps, activeStep, setActiveStep, finishedFirst }) 
 
     return(
         <div className="flex-row">
-        <Button
-                onClick={onClick}
-                disabled={activeStep === 0}
-            >
-                ←
-            </Button>
-        <Stepper activeStep={activeStep}>
-            {steps.map(label =>
-                <Step key={label}>
-                    <StepLabel>{label}</StepLabel>
-                </Step>
-            )}
-        </Stepper>
-        <Button
-                disabled={!finishedFirst}
-                onClick={onClick}
-            >
-                →
-            </Button>
+            <IconButton
+                    onClick={onClick}
+                    disabled={activeStep === 0}
+                    aria-label="back"
+                    color="primary"
+                >
+                    <ArrowBackIosNewIcon />
+                </IconButton>
+            <Stepper activeStep={activeStep}>
+                {steps.map(label =>
+                    <Step key={label}>
+                        <StepLabel>{label}</StepLabel>
+                    </Step>
+                )}
+            </Stepper>
+            <IconButton
+                    disabled={!(finishedFirst && activeStep === 0)}
+                    onClick={onClick}
+                    color="primary"
+                    aria-label="forward"
+                >
+                    <ArrowForwardIosIcon />
+                </IconButton>
         </div>
     )
 }
