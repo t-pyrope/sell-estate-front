@@ -29,13 +29,15 @@ nodemon server
 6. The server will run on [http://localhost:5000](http://localhost:5000)
 
 ## How to use the app without downloading the server repository
-To use it without downloading the server repository, change the following code in this one:
-
-- in `src/http-common.js` replace this:
-```javascript
-baseURL: "http://localhost:5000/lead",
+1. Download this repository
 ```
-to this
-```javascript
-baseURL: "https://eu-central-1.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/sell-estate-ezpbb/service/lead/incoming_webhook/lead",
+git clone https://github.com/t-pyrope/sell-estate-front.git
+cd sell-estate-front
+npm install
 ```
+2. Uncomment the commented code in `src/http-common.js` and `src/services/estates.js` and comment alternatives of the uncommented code
+3. Run the app locally
+```
+npm start
+```
+The app will run on [http://localhost:3000](http://localhost:3000)
