@@ -54,7 +54,7 @@ h1, p {
 
 .flex-row {
     display: flex;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .fade-out {
