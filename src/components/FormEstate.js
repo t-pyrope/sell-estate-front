@@ -42,7 +42,13 @@ const FormEstate = (props) => {
                 <svg viewBox="0 7 2560 1615">
                     {
                         regions.map(r => 
-                            <a href="" key={r.title} onClick={e => onClick(e, r.title)}>
+                            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                            <a
+                                href=""
+                                key={r.title}
+                                onClick={e => onClick(e, r.title)}
+                                aria-label={`Zvolit ${r.title}`}
+                            >
                                 <path
                                     className={`${r.title === estateInfo.region?.title ? "region_active" : ""} region`}
                                     d={r.d}
