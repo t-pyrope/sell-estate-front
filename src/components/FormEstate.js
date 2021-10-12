@@ -17,7 +17,10 @@ const FormEstate = (props) => {
     const onClick = (e, text) => {
         e.preventDefault();
         let r = regions.find((item) => item.title === text);
-        setEstateInfo({ ...estateInfo, region: r, district: null, estateType: null })
+        setEstateInfo({
+            ...estateInfo, region: r,
+            district: null, estateType: null
+        })
     }
 
     const onSubmit = (e) => {
@@ -28,10 +31,16 @@ const FormEstate = (props) => {
     const onChange = (e) => {
         const inputName = e.target.name;
         const value = e.target.value;
-        if (inputName === "district") setEstateInfo({ ...estateInfo, district: value });
-        if (inputName === "estateType") setEstateInfo({ ...estateInfo, estateType: value });
-        return;
-
+        switch(inputName) {
+            case "district":
+                setEstateInfo({ ...estateInfo, district: value });
+                return;
+            case "estateType":
+                setEstateInfo({ ...estateInfo, estateType: value });
+                return;
+            default:
+                return;
+        }
     }
     return(
         <>
@@ -61,7 +70,7 @@ const FormEstate = (props) => {
             {
                 estateInfo.region ?
                     <form onSubmit={(e) => onSubmit(e)}>
-                        <FormControl component="fieldset" style={{ marginBottom: "1rem"}}>
+                        <FormControl component="fieldset">
                             <FormLabel component="legend">Vyberte okres</FormLabel>
                             <Grid container columns={{ xs: 3 }}>
                                 {estateInfo.region.districts.map(district =>
@@ -79,7 +88,7 @@ const FormEstate = (props) => {
                                 )}
                             </Grid>
                         </FormControl>
-                        <FormControl component="fieldset" style={{ marginBottom: "1rem"}}>
+                        <FormControl component="fieldset">
                             <FormLabel component="legend">Vyberte typ nemovitosti</FormLabel>
                             <Grid container columns={{ xs: 3 }}>
                                 {estateTypes.map(t =>

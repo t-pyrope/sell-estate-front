@@ -32,10 +32,6 @@ body {
 
 }
 
-.MuiFormControl-root.css-1nrlq1o-MuiFormControl-root {
-    margin-bottom: 1rem;
-}
-
 .MuiPaper-root.MuiAlert-root {
     position: absolute;
     top: 4rem;
@@ -47,14 +43,24 @@ body {
 
 .MuiOutlinedInput-root.MuiInputBase-root {
     width: 50%;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
 }
 
-.MuiFormControl-root {
-    display: block !important;
+.MuiOutlinedInput-input.MuiInputBase-input {
+    padding: 14px 10px;
+}
+
+.MuiFormControl-root.MuiTextField-root {
+    display: block;
 }
 
 h1, p {
     margin-bottom: 0.7rem;
+}
+
+.contact-title {
+    margin-bottom: 2rem;
 }
 
 .flex-row {
@@ -99,10 +105,15 @@ h1, p {
     100% { opacity: 0; }
 }
 
-@media(max-width: 732px) {
+@media(max-width: 768px) {
     body {
+        font-size: 13px;
         margin: 1rem;
         width: calc(100vw - 2rem);
+    }
+
+    .MuiRadio-root.MuiRadio-colorPrimary.MuiButtonBase-root {
+        padding: 5px;
     }
 
     .MuiOutlinedInput-root.MuiInputBase-root {

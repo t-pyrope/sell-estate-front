@@ -68,7 +68,7 @@ const FormContact = (props) => {
 
     return(
         <>
-            <h1>Kontaktní informace</h1>
+            <h1 className="contact-title">Kontaktní informace</h1>
             <Box
                 component="form"
                 sx={{

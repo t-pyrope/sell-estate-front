@@ -1,5 +1,6 @@
 .map {
     position: relative;
+    margin-bottom: 1.5rem;
 }
 .map img {
     width: 100%;
