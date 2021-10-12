@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint \"**/*.js\" --max-warnings=0"
+    "lint": "eslint src/ --max-warnings=0"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +47,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-import": "^2.25.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
