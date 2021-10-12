@@ -8,7 +8,7 @@ import map from '../assets/img/mapa.jpg';
 import './map.css';
 import regions from './regions';
 
-const estateTypes = ['Dům', 'Pozemek'];
+const estateTypes = ['Dům', 'Pozemek', 'Byt'];
 
 const FormEstate = (props) => {
   const {
