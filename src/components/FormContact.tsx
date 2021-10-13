@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
-import { PropTypes } from 'prop-types';
 import { TextField, Button, Box } from '@mui/material';
+import {
+  AlertProps, EstateInfoProps, ContactsProps,
+} from '../common/interfaces';
 import EstatesDataService from '../services/estates';
 
-const FormContact = (props) => {
+interface FormContactProps {
+  estateInfo: EstateInfoProps,
+  setAlert: (value: AlertProps) => void,
+  setEstateInfo: (value: EstateInfoProps) => void,
+  setActiveStep: (value: number) => void,
+  contacts: ContactsProps,
+  setContacts: (value: ContactsProps) => void
+}
+
+const FormContact = ({
+  estateInfo, setAlert, setEstateInfo,
+  setActiveStep, contacts, setContacts,
+}: FormContactProps) => {
   const [hasPhoneError, setHasPhoneError] = useState(false);
   const [hasEmailError, setHasEmailError] = useState(false);
 
-  const {
-    estateInfo: { region, district, estateType }, estateInfo,
-    setAlert, setActiveStep, setEstateInfo, setContacts,
-    contacts,
-  } = props;
+  const { region, district, estateType } = estateInfo;
 
-  const validateError = (inputName, value) => {
+  const validateError = (inputName: string, value: string): boolean => {
     if (inputName === 'phone') {
       const regPhone = /([+]?\d{1,3}[. \s]?)?(\d{9}?)/;
       return !regPhone.test(value);
@@ -25,7 +35,7 @@ const FormContact = (props) => {
     return false;
   };
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name;
     const { value } = e.target;
     switch (inputName) {
@@ -45,7 +55,7 @@ const FormContact = (props) => {
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     const { fullName, phone, email } = contacts;
@@ -56,12 +66,13 @@ const FormContact = (props) => {
         phone,
         email,
         estateType,
-        region: region.title,
+        region,
         district,
       }).then(() => {
         setAlert({
+          ...alert,
           text: 'Údaje byly úspěšně odeslány, brzy Vás budeme kontaktovat',
-          color: 'success',
+          isError: false,
         });
         setContacts({
           ...contacts,
@@ -71,15 +82,19 @@ const FormContact = (props) => {
         });
         setEstateInfo({
           ...estateInfo,
-          region: null,
-          district: null,
-          estateType: null,
+          region: '',
+          district: '',
+          estateType: '',
         });
         setActiveStep(0);
       }).catch((err) => {
         // eslint-disable-next-line no-console
         console.error(err);
-        setAlert({ text: 'Něco je špatně, zkuste prosím znovu', color: 'error' });
+        setAlert({
+          ...alert,
+          text: 'Něco je špatně, zkuste prosím znovu',
+          isError: true,
+        });
       });
   };
 
@@ -145,23 +160,6 @@ const FormContact = (props) => {
       </Box>
     </>
   );
-};
-
-FormContact.propTypes = {
-  estateInfo: PropTypes.shape({
-    region: PropTypes.string,
-    district: PropTypes.string,
-    estateType: PropTypes.string,
-  }).isRequired,
-  setAlert: PropTypes.func.isRequired,
-  setActiveStep: PropTypes.isRequired,
-  setEstateInfo: PropTypes.isRequired,
-  setContacts: PropTypes.isRequired,
-  contacts: PropTypes.shape({
-    fullName: PropTypes.string,
-    email: PropTypes.string,
-    phone: PropTypes.string,
-  }).isRequired,
 };
 
 export default FormContact;

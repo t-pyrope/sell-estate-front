@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import {
   Radio, FormLabel, FormControlLabel,
   FormControl, Grid, Button,
@@ -7,31 +6,51 @@ import {
 import map from '../assets/img/mapa.jpg';
 import './map.css';
 import regions from './regions';
+import { EstateInfoProps } from '../common/interfaces';
 
 const estateTypes = ['Dům', 'Pozemek', 'Byt'];
 
-const FormEstate = (props) => {
-  const {
-    estateInfo, setEstateInfo, setActiveStep,
-  } = props;
+interface FormEstateInterface {
+  estateInfo: EstateInfoProps,
+  setEstateInfo: (value: EstateInfoProps) => void,
+  setActiveStep: (value: number) => void
+}
 
-  const onClick = (e, text) => {
+interface ChosenRegionProps {
+  title: string,
+  districts: string[],
+}
+
+const FormEstate = ({ estateInfo, setEstateInfo, setActiveStep }: FormEstateInterface) => {
+  const [chosenRegion, setChosenRegion] = useState<ChosenRegionProps>({ title: '', districts: [] });
+
+  useEffect(() => {
+    if (estateInfo.region) {
+      const r = regions.find((item) => item.title === estateInfo.region);
+      setChosenRegion({
+        title: r!.title,
+        districts: r!.districts,
+      });
+    }
+  }, [estateInfo.region]);
+
+  const onClick = (e: React.SyntheticEvent, text: string): void => {
     e.preventDefault();
     const r = regions.find((item) => item.title === text);
     setEstateInfo({
       ...estateInfo,
-      region: r,
-      district: null,
-      estateType: null,
+      region: r!.title,
+      district: '',
+      estateType: '',
     });
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setActiveStep(1);
   };
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputName = e.target.name;
     const { value } = e.target;
     switch (inputName) {
@@ -61,31 +80,31 @@ const FormEstate = (props) => {
               aria-label={`Zvolit ${r.title}`}
             >
               <path
-                className={`${r.title === estateInfo.region?.title ? 'region_active' : ''} region`}
+                className={`${r.title === estateInfo.region ? 'region_active' : ''} region`}
                 d={r.d}
               />
             </a>
           ))}
         </svg>
       </div>
-      { estateInfo.region
+      { chosenRegion.districts.length
         ? (
-          <form onSubmit={(e) => onSubmit(e)}>
+          <form onSubmit={(e) => onSubmit(e)} className="form_estate">
             <FormControl component="fieldset">
               <FormLabel component="legend">Vyberte okres</FormLabel>
               <Grid container columns={{ xs: 3 }}>
-                {estateInfo.region.districts.map((district) => (
+                {chosenRegion.districts.map((district) => (
                   <Grid item key={district}>
                     <FormControlLabel
-                      value={district}
                       control={(
                         <Radio
                           checked={district === estateInfo.district}
+                          name="district"
+                          onChange={onChange}
+                          value={district}
                         />
                       )}
                       label={district}
-                      name="district"
-                      onChange={onChange}
                     />
                   </Grid>
                 ))}
@@ -97,15 +116,15 @@ const FormEstate = (props) => {
                 {estateTypes.map((t) => (
                   <Grid item key={t}>
                     <FormControlLabel
-                      value={t}
                       control={(
                         <Radio
                           checked={t === estateInfo.estateType}
+                          onChange={onChange}
+                          name="estateType"
+                          value={t}
                         />
                       )}
                       label={t}
-                      name="estateType"
-                      onChange={onChange}
                     />
                   </Grid>
                 ))}
@@ -125,16 +144,6 @@ const FormEstate = (props) => {
         : ''}
     </>
   );
-};
-
-FormEstate.propTypes = {
-  estateInfo: PropTypes.shape({
-    region: PropTypes.string,
-    district: PropTypes.string,
-    estateType: PropTypes.string,
-  }).isRequired,
-  setEstateInfo: PropTypes.func.isRequired,
-  setActiveStep: PropTypes.func.isRequired,
 };
 
 export default FormEstate;

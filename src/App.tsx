@@ -12,15 +12,15 @@ const steps = ['Typ nemovitosti', 'Kontaktní informace'];
 
 function App() {
   const [activeStep, setActiveStep] = useState(0);
-  const [estateInfo, setEstateInfo] = useState({ region: null, district: null, estateType: null });
+  const [estateInfo, setEstateInfo] = useState({ region: '', district: '', estateType: '' });
   const [contacts, setContacts] = useState({ fullName: '', phone: '', email: '' });
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState({ text: '', isError: false });
 
   const location = useLocation();
 
   useEffect(() => {
-    if (alert) {
-      const timeout = setTimeout(() => { setAlert(null); }, 4000);
+    if (alert.text) {
+      const timeout = setTimeout(() => { setAlert({ ...alert, text: '', isError: false }); }, 4000);
       return () => {
         clearTimeout(timeout);
       };
@@ -33,22 +33,22 @@ function App() {
       <Switch location={location} key={location.pathname}>
         <Route path="/chci-nabidku" exact>
           <Card>
-            {alert
-              && (
-              <Alert
-                className="fade-out"
-                icon={false}
-                variant="filled"
-                severity={alert.color}
-              >
-                {alert.text}
-              </Alert>
-              )}
+            {alert.text
+              ? (
+                <Alert
+                  className="fade-out"
+                  icon={false}
+                  variant="filled"
+                  severity={alert.isError ? 'error' : 'success'}
+                >
+                  {alert.text}
+                </Alert>
+              ) : ''}
             <HorizontalStepper
               activeStep={activeStep}
               steps={steps}
               setActiveStep={setActiveStep}
-              finishedFirst={estateInfo.district && estateInfo.estateType}
+              finishedFirst={Boolean(estateInfo.district && estateInfo.estateType)}
             />
             {activeStep === 0
               && (

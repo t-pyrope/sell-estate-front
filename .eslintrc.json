@@ -7,6 +7,7 @@
         "react-app",
         "plugin:react/recommended",
         "airbnb",
+        "airbnb-typescript",
         "prettier/prettier"
     ],
     "parserOptions": {
@@ -14,12 +15,13 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
     "plugins": [
         "react"
     ],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+        "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
     }
 }
