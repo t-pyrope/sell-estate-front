@@ -25,7 +25,8 @@ const FormContact = ({
 
   const validateError = (inputName: string, value: string): boolean => {
     if (inputName === 'phone') {
-      const regPhone = /([+]?\d{1,3}[. \s]?)?(\d{9}?)/;
+      // regex from https://regex101.com/library/sI9bU6
+      const regPhone = /^(\+?420)?(2[0-9]{2}|3[0-9]{2}|4[0-9]{2}|5[0-9]{2}|72[0-9]|73[0-9]|77[0-9]|60[1-8]|56[0-9]|70[2-5]|79[0-9])[0-9]{3}[0-9]{3}$/;
       return !regPhone.test(value);
     }
     if (inputName === 'email') {
