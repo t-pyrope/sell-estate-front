@@ -1,0 +1,35 @@
+.fade-out {
+    animation-name: fadeOut;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-timing-function: ease-out;
+}
+
+@-webkit-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@-moz-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@-o-keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}
+
+@keyframes fadeOut {
+    0%   { opacity: 0; }
+    15% { opacity: 1; }
+    85% {opacity: 1}
+    100% { opacity: 0; }
+}

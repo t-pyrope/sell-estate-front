@@ -1,0 +1,5 @@
+@media(max-width: 768px) {
+    .MuiRadio-root.MuiRadio-colorPrimary.MuiButtonBase-root {
+        padding: 5px;
+    }
+}

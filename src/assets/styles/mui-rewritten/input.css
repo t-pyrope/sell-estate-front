@@ -1,0 +1,15 @@
+.MuiOutlinedInput-root.MuiInputBase-root {
+    width: 50%;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
+.MuiOutlinedInput-input.MuiInputBase-input {
+    padding: 14px 10px;
+}
+
+@media(max-width: 768px) {
+    .MuiOutlinedInput-root.MuiInputBase-root {
+        width: 100%;
+    }
+}

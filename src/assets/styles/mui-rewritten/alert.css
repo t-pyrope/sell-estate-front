@@ -1,0 +1,7 @@
+.MuiPaper-root.MuiAlert-root {
+    position: absolute;
+    top: 4rem;
+    left: 30%;
+    right: 30%;
+    z-index: 2;
+}
