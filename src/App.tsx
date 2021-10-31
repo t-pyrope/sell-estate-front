@@ -28,6 +28,13 @@ function App() {
     return () => {};
   }, [alert]);
 
+  useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
+  }, [activeStep]);
+
   return (
     <div className="App">
       <Switch location={location} key={location.pathname}>
